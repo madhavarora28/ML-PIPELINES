@@ -1,0 +1,93 @@
+import pandas as pd
+import numpy as np
+
+data={
+    'Country':['USA','INDIA','UK',np.nan],
+    'Comment':['OK','*','?','#'],
+    'GDP':[21.4,1.74,2.78,np.nan],
+    'Year':[2021,2021,2020,2019],
+    'Capital':['Washington','New Delhi','London',np.nan]
+}
+df= pd.DataFrame(data)
+df.head()
+
+df.isnull()
+
+df.isnull().sum
+
+rows=df.isnull().axis=1
+rows
+
+fd=pd.DataFrame(data)
+fd
+
+fd.GDP.mean()
+
+fd['GDP'].fillna(fd['GDP'].mean(),inplace=True)
+fd
+
+fd.GDP.median()
+
+#forward filling LOCF = last observation carried forward
+fd['Country'].ffill(inplace=True)
+fd
+
+fd['Capital'].fillna(method='ffill',inplace=True)
+fd
+
+fd1 = pd.DataFrame(data).values
+symbols =['*','?','#']
+for row in fd1:
+    if set(row) & set(symbols):
+        print(row)
+
+fd1 = pd.DataFrame(fd).values
+symbols =['*','?','#']
+for row in fd1:
+    if set(row) & set(symbols):
+        print(row)
+
+# create 
+data={
+    'Country':['USA','Canada','France','Bangladesh'],
+    'Population':[123,99,98,101],
+    'Comment':['OK','*','?','#'],
+    'GDP':[21.42,1.74,2.78,6.7],
+    'Capital':['Washington','Ottawa','Paris','Dhaka']
+}
+df1= pd.DataFrame(data)
+df1.head()
+
+df1.isnull().sum()
+
+df1.replace({
+    '*':np.nan,
+    '?':np.nan,
+    '#':np.nan,
+},inplace = True)
+df1
+
+df1.isnull().sum()
+
+df1
+
+df1.isnull().mean()
+
+df1.drop('Comment',axis=1,inplace=True)
+df1
+
+#types of missing 
+#1. MCAR- missing completely at random
+#2. MAR- not missing at random
+#3. MNAR- missing not at random 
+
+import pandas as pd
+import numpy as np
+df3=pd.read_csv("C:\\Users\\HP\\Downloads\\train.csv")
+df3
+
+df3.drop('Cabin',axis=1,inplace=True)
+df3
+
+
+

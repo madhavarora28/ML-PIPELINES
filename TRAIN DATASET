@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+Train=pd.read_csv("C:\\Users\\HP\\Downloads\\train.csv")
+
+Train
+
+Train.tail()
+
+Train.head()
+
+Train.isnull().sum()
+
+Train.drop('Cabin',axis=1,inplace=True)
+Train
+
+
+
+percent_null_age = Train['Age'].isnull().sum()/len(Train)*100
+print(f"{percent_null_age:.2f}%")
+
+Age_imputed=Train['Age']
+Age_imputed
+
+Train['Age'][Train['Age'].isnull()]=Train['Age'].dropna().sample(Train['Age'].isnull().sum()).values
+
+Train
+
